@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة المحاضرات الطبية</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root {
+            --primary-blue: #0b6fa4;
+            --secondary-blue: #4d9de0;
+            --bg-color: #f4f8fb;
+            --card-bg: #ffffff;
+            --text-dark: #102a43;
+            --text-muted: #52677a;
+        }
+
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(11, 111, 164, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d9e4ec;
+            padding-bottom: 5px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(7, 59, 76, 0.08);
+            border: 1px solid #d9e4ec;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(11, 111, 164, 0.15);
+            border-color: var(--secondary-blue);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .lecture-list {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(7, 59, 76, 0.08);
+            overflow: hidden;
+            display: none; 
+        }
+
+        .lecture-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #d9e4ec;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-item:hover {
+            background: #eef5f6;
+        }
+
+        .lecture-title {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .lecture-icon {
+            color: var(--secondary-blue);
+        }
+
+        footer {
+            background: #ffffff;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            border-top: 1px solid #d9e4ec;
+            margin-top: auto;
+        }
+
+        footer b {
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مكتبة المحاضرات الطبية</h1>
+    </header>
+
+    <div class="container">
+        <div id="subjectsSection">
+            <div class="section-title">المواد الدراسية</div>
+            <div class="subjects-grid">
+                <div class="card" onclick="showLectures('internalMed')">
+                    <div class="card-icon">🩺</div>
+                    <div class="card-title">أمراض باطنية 1</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👶</div>
+                    <div class="card-title">طب الأطفال</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔪</div>
+                    <div class="card-title">جراحة عامة</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lecturesSection" style="display: none;">
+            <div class="section-title">
+                <button onclick="showSubjects()" style="background:none; border:none; color:var(--secondary-blue); cursor:pointer; font-weight:bold;">← رجوع</button>
+                محاضرات: أمراض باطنية 1
+            </div>
+            <div class="lecture-list">
+                <a href="Internal_Medicine_1_Lecture_1_Interactive (3).html" style="text-decoration: none;">
+                    <div class="lecture-item">
+                        <span class="lecture-title">المحاضرة الأولى: مقدمة عن الأمراض الباطنية</span>
+                        <span class="lecture-icon">📖</span>
+                    </div>
+                </a>
+                <div class="lecture-item">
+                    <span class="lecture-title">المحاضرة الثانية: (مثال)</span>
+                    <span class="lecture-icon">🔒</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        صنع بواسطة <b>م/محمد باحقينه</b>
+    </footer>
+
+    <script>
+        function showLectures(subjectId) {
+            document.getElementById('subjectsSection').style.display = 'none';
+            document.getElementById('lecturesSection').style.display = 'block';
+        }
+
+        function showSubjects() {
+            document.getElementById('lecturesSection').style.display = 'none';
+            document.getElementById('subjectsSection').style.display = 'block';
+        }
+
+        // PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('تم تفعيل الاستضافة المحلية بنجاح'))
+                    .catch(err => console.log('فشلت عملية التفعيل:', err));
+            });
+        }
+    </script>
+</body>
+</html>

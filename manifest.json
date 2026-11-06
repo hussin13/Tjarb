@@ -1,0 +1,10 @@
+{
+  "name": "مكتبة المحاضرات الطبية",
+  "short_name": "محاضراتي",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f8fb",
+  "theme_color": "#0b6fa4",
+  "dir": "rtl",
+  "lang": "ar"
+}
